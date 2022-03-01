@@ -22,7 +22,7 @@
 <p>jQuery component for a tabset.</p>
 <h3>Features</h3>
 <ul>
-  <li>A tool to define an tabset element which is browser independant.</li>
+  <li>A tool to define a tabset element which is browser independant.</li>
   <li>Variable number of tabs.</li>
   <li>Width and height of tabs are adjustable.</li>
   <li>Indents and overlaps of the tabs are also adjustable.</li>
