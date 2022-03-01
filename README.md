@@ -24,12 +24,13 @@
 <ul>
   <li>A tool to define an tabset element which is browser independant.</li>
   <li>Variable number of tabs.</li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
+  <li>Width and height of tabs are adjustable.</li>
+  <li>Indents and overlaps of the tabs are also adjustable.</li>
+  <li>The height of the pages can be changed.</li>
+  <li>Line widths and colors of the  tabs and pages can be changed </li>
+  <li>Different hover modes: line, fill or mixed.</li>
+  <li>Fonts are based on SVG graphics, so also can have outlines.</li>
+  
 </ul>
 <h2>Contact</h2>
 <ul>
