@@ -23,7 +23,13 @@
 <h3>Features</h3>
 <ul>
   <li>A tool to define an tabset element which is browser independant.</li>
-  <li></li>  
+  <li>Variable number of tabs.</li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
 </ul>
 <h2>Contact</h2>
 <ul>
