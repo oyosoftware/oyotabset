@@ -9,7 +9,7 @@
  * oyotabset is a tool to define an tabset element which is browser independant
  */
 
-function oyoTabset(tabs, tabWidth, tabHeight, tabLineWidth, indent, overlap, pageHeight) {
+function oyoTabset(tabs = 8, tabWidth = 100, tabHeight = 50, tabLineWidth = 2, tabIndent = 25, tabOverlap = 0, pageHeight = 200) {
 
     var defaultBackgroundColor = "white";
     var defaultOuterLineColor = "#B3CEB3";
@@ -34,20 +34,21 @@ function oyoTabset(tabs, tabWidth, tabHeight, tabLineWidth, indent, overlap, pag
 
     var tabsetIndex = $(".oyotabset").length + 1;
 
-    maxindent = tabWidth / 2;
-    if (indent > maxindent) {
-        indent = maxindent;
+    maxTabIndent = tabWidth / 2;
+    if (tabIndent > maxTabIndent) {
+        tabIndent = maxTabIndent;
     }
 
-    var length = Math.sqrt(Math.pow(indent, 2) + Math.pow(tabHeight, 2));
+    var length = Math.sqrt(Math.pow(tabIndent, 2) + Math.pow(tabHeight, 2));
     var sin = tabHeight / length;
     var cos = Math.sqrt(1 - Math.pow(sin, 2));
     var tabBorderWidth = Math.sqrt(Math.pow(tabLineWidth, 2) + Math.pow(tabLineWidth * cos / sin, 2));
-    var tabBorderHeight = tabHeight - (tabWidth - 2 * tabBorderWidth) / tabWidth * tabHeight - (tabWidth / 2 - indent) * sin / cos;
+    var tabBorderHeight = tabHeight - (tabWidth - 2 * tabBorderWidth) / tabWidth * tabHeight - (tabWidth / 2 - tabIndent) * sin / cos;
 
     var tabset = document.createElement("div");
     $(tabset).attr("class", "oyotabset");
-    var tabsetWidth = tabs * tabWidth - (tabs - 1) * overlap;
+    $(tabset).css("box-sizing", "border-box");
+    var tabsetWidth = tabs * tabWidth - (tabs - 1) * tabOverlap;
     $(tabset).width(tabsetWidth);
     $(tabset).height(tabHeight + pageHeight);
     $(tabset).css("position", "relative");
@@ -64,8 +65,8 @@ function oyoTabset(tabs, tabWidth, tabHeight, tabLineWidth, indent, overlap, pag
         }
         $(tab).css("display", "inline");
         $(tab).css("position", "relative");
-        if (overlap >= 0) {
-            $(tab).css("left", -i * overlap);
+        if (tabOverlap >= 0) {
+            $(tab).css("left", -i * tabOverlap);
         } else {
             $(tab).css("left", -i * tabBorderWidth);
         }
@@ -73,10 +74,10 @@ function oyoTabset(tabs, tabWidth, tabHeight, tabLineWidth, indent, overlap, pag
         $(tabset).append(tab);
 
         var svg = document.createElementNS(svgNS, "svg");
-        if (overlap >= 0) {
+        if (tabOverlap >= 0) {
             $(svg).width(tabWidth);
         } else {
-            $(svg).width(tabWidth - overlap + tabBorderWidth);
+            $(svg).width(tabWidth - tabOverlap + tabBorderWidth);
         }
         $(svg).height(tabHeight);
         $(tab).append(svg);
@@ -130,7 +131,7 @@ function oyoTabset(tabs, tabWidth, tabHeight, tabLineWidth, indent, overlap, pag
         $(text).attr("fill", textColor);
         $(svg).append(text);
 
-        if (overlap < 0 && i < tabs - 1) {
+        if (tabOverlap < 0 && i < tabs - 1) {
             var interTabLine = document.createElementNS(svgNS, "polygon");
             $(interTabLine).attr("class", "oyointertabline");
             $(interTabLine).attr("stroke-width", 0);
@@ -153,8 +154,6 @@ function oyoTabset(tabs, tabWidth, tabHeight, tabLineWidth, indent, overlap, pag
         $(page).css("overflow", "auto");
         $(page).css("z-index", tabs - i);
         $(tabset).append(page);
-
-        $("*", tabset).css("box-sizing", "border-box");
     }
 
     var svg = document.createElementNS(svgNS, "svg");
@@ -171,7 +170,7 @@ function oyoTabset(tabs, tabWidth, tabHeight, tabLineWidth, indent, overlap, pag
     $(clipPath).append(use);
 
     var img = document.createElement("img");
-    $(img).width(tabs * tabWidth - (tabs - 1) * overlap);
+    $(img).width(tabs * tabWidth - (tabs - 1) * tabOverlap);
     $(img).height(tabHeight);
     $(img).css("padding", "0px");
     $(img).css("position", "relative");
@@ -271,9 +270,9 @@ function oyoTabset(tabs, tabWidth, tabHeight, tabLineWidth, indent, overlap, pag
     }
 
     function getPoints() {
-        var x1 = indent;
+        var x1 = tabIndent;
         var y1 = 0;
-        var x2 = tabWidth - indent;
+        var x2 = tabWidth - tabIndent;
         var y2 = 0;
         var x3 = tabWidth;
         var y3 = tabHeight;
@@ -288,9 +287,9 @@ function oyoTabset(tabs, tabWidth, tabHeight, tabLineWidth, indent, overlap, pag
     }
 
     function getInnerPoints(state) {
-        var x1 = indent - cos * tabBorderWidth + tabBorderWidth;
+        var x1 = tabIndent - cos * tabBorderWidth + tabBorderWidth;
         var y1 = tabLineWidth;
-        var x2 = tabWidth - indent + cos * tabBorderWidth - tabBorderWidth;
+        var x2 = tabWidth - tabIndent + cos * tabBorderWidth - tabBorderWidth;
         var y2 = tabLineWidth;
         if (x1 > x2) {
             x1 = tabWidth / 2;
@@ -298,22 +297,22 @@ function oyoTabset(tabs, tabWidth, tabHeight, tabLineWidth, indent, overlap, pag
             y1 = tabBorderHeight;
             y2 = tabBorderHeight;
         }
-        var x3 = tabWidth - overlap / 2 - tabBorderWidth / 2;
-        var y3 = tabHeight - overlap / indent / 2 * tabHeight + (tabBorderWidth / 2) * sin / cos;
+        var x3 = tabWidth - tabOverlap / 2 - tabBorderWidth / 2;
+        var y3 = tabHeight - tabOverlap / tabIndent / 2 * tabHeight + (tabBorderWidth / 2) * sin / cos;
         if (state === 0) {
-            var x4 = tabWidth - overlap + tabLineWidth * cos / sin;
+            var x4 = tabWidth - tabOverlap + tabLineWidth * cos / sin;
         } else {
             var x4 = tabWidth - tabBorderWidth - cos * tabBorderWidth;
         }
         var y4 = tabHeight - tabLineWidth;
         if (state === 2) {
-            var x5 = overlap - tabLineWidth * cos / sin;
+            var x5 = tabOverlap - tabLineWidth * cos / sin;
         } else {
             var x5 = tabBorderWidth + cos * tabBorderWidth;
         }
         var y5 = tabHeight - tabLineWidth;
-        var x6 = overlap / 2 + tabBorderWidth / 2;
-        var y6 = tabHeight - overlap / indent / 2 * tabHeight + (tabBorderWidth / 2) * sin / cos;
+        var x6 = tabOverlap / 2 + tabBorderWidth / 2;
+        var y6 = tabHeight - tabOverlap / tabIndent / 2 * tabHeight + (tabBorderWidth / 2) * sin / cos;
         var p1 = x1 + "," + y1;
         var p2 = x2 + "," + y2;
         var p3 = x3 + "," + y3;
@@ -344,9 +343,9 @@ function oyoTabset(tabs, tabWidth, tabHeight, tabLineWidth, indent, overlap, pag
     function getInterLinePoints() {
         var x1 = tabWidth - tabBorderWidth;
         var y1 = tabHeight - tabLineWidth;
-        var x2 = tabWidth - overlap + tabBorderWidth;
+        var x2 = tabWidth - tabOverlap + tabBorderWidth;
         var y2 = tabHeight - tabLineWidth;
-        var x3 = tabWidth - overlap + tabBorderWidth;
+        var x3 = tabWidth - tabOverlap + tabBorderWidth;
         var y3 = tabHeight;
         var x4 = tabWidth - tabBorderWidth;
         var y4 = tabHeight;
@@ -359,26 +358,26 @@ function oyoTabset(tabs, tabWidth, tabHeight, tabLineWidth, indent, overlap, pag
     }
 
     function getCoords(index, state) {
-        var x1 = index * tabWidth + indent - index * overlap;
+        var x1 = index * tabWidth + tabIndent - index * tabOverlap;
         var y1 = 0;
-        var x2 = (index + 1) * tabWidth - indent - index * overlap;
+        var x2 = (index + 1) * tabWidth - tabIndent - index * tabOverlap;
         var y2 = 0;
-        var x3 = (index + 1) * tabWidth - index * overlap - overlap / 2;
-        var y3 = tabHeight - overlap / indent / 2 * tabHeight;
+        var x3 = (index + 1) * tabWidth - index * tabOverlap - tabOverlap / 2;
+        var y3 = tabHeight - tabOverlap / tabIndent / 2 * tabHeight;
         if (state === 0) {
-            var x4 = (index + 1) * tabWidth - index * overlap - overlap;
+            var x4 = (index + 1) * tabWidth - index * tabOverlap - tabOverlap;
         } else {
-            var x4 = (index + 1) * tabWidth - index * overlap;
+            var x4 = (index + 1) * tabWidth - index * tabOverlap;
         }
         var y4 = tabHeight;
         if (state === 2) {
-            var x5 = index * tabWidth - index * overlap + overlap;
+            var x5 = index * tabWidth - index * tabOverlap + tabOverlap;
         } else {
-            var x5 = index * tabWidth - index * overlap;
+            var x5 = index * tabWidth - index * tabOverlap;
         }
         var y5 = tabHeight;
-        var x6 = index * tabWidth - index * overlap + overlap / 2;
-        var y6 = tabHeight - overlap / indent / 2 * tabHeight;
+        var x6 = index * tabWidth - index * tabOverlap + tabOverlap / 2;
+        var y6 = tabHeight - tabOverlap / tabIndent / 2 * tabHeight;
 
         var p1 = x1 + "," + y1;
         var p2 = x2 + "," + y2;
@@ -460,7 +459,7 @@ function oyoTabset(tabs, tabWidth, tabHeight, tabLineWidth, indent, overlap, pag
     tabset.setAutoText = function (textMode, textLength, index = firstEmptyIndex, numericLength = 10, includeZero = true) {
         textMode = textMode.toUpperCase();
 
-        if (textMode === "A" || textMode === "ALPHA") {
+        if (textMode === "A" || textMode === "ALPHABET") {
             if (textLength === undefined) {
                 textLength = 3;
             }
@@ -592,6 +591,11 @@ function oyoTabset(tabs, tabWidth, tabHeight, tabLineWidth, indent, overlap, pag
         $(".oyotabtext", tabset).css("fill", textColor);
         $(".oyotabtext", tabset).css("stroke-width", 0);
         $(".oyotabtext", tabset).css("stroke", textColor);
+    };
+
+    tabset.changePageHeight = function (pageHeight) {
+        $(tabset).height(tabHeight + pageHeight);
+        $(".oyotabpage", tabset).outerHeight(pageHeight);
     };
 
     return tabset;

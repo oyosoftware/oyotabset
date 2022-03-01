@@ -43,20 +43,20 @@
         <script>
             $(document).ready(function () {
 
-                var tabset = new oyoTabset(8, 150, 50, 2, 50, 50, 300);
+                var tabset = new oyoTabset(8, 150, 50, 2, 50, 50);
                 $("body").append(tabset);
+                tabset.changePageHeight(300);
                 //tabset.setHoverMode("mixed", {lineColor: "red"});
                 //tabset.setHoverMode("line");
                 //tabset.changeBackgroundColor("pink");
                 //tabset.changeLineColor("black");
                 tabset.setFont(24, "", 1, "black");
-
                 //tabset.setText("oYoSoftware");
-                tabset.setAutoText("Alpha");
+                tabset.setAutoText("Alphabet");
                 //tabset.setAutoText("Numeric", 10, 0, 100);
                 //tabset.resetTabSettings();
 
-                var tabs = $(".oyotab").length;
+                var tabs = $(".oyotab", tabset).length;
                 for (var i = 0; i < tabs; i++) {
                     var page = tabset.getPage(i);
 
