@@ -1,0 +1,266 @@
+<html>
+    <head>
+        <title>Tabs</title>
+        <meta charset="UTF-8">
+        <script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
+        <script src="oyotabset.js"></script>
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+            ::-webkit-scrollbar {
+                height              : 10px;
+                width               : 10px;
+            }
+            ::-webkit-scrollbar-corner {
+                background-color    : transparent;
+            }
+            ::-webkit-scrollbar-thumb {
+                border              : 2px solid black;
+                border-radius       : 54px;
+            }
+            .oyotab {
+                font-family: Fantasy;
+            }
+            .oyotabpage {
+                padding: 8px;
+            }
+            table {
+                border-collapse: collapse;
+            }
+            thead {
+                background: #527FC3;
+                color: white;
+            }
+            td {
+                border: 1px solid black;
+                padding: 3px 5px;
+                white-space: nowrap;
+            }
+        </style>
+    </head>
+    <body>
+        <script>
+            $(document).ready(function () {
+
+                var tabset = new oyoTabset(8, 150, 50, 2, 50, 50, 300);
+                $("body").append(tabset);
+                //tabset.setHoverMode("mixed", {lineColor: "red"});
+                //tabset.setHoverMode("line");
+                //tabset.changeBackgroundColor("pink");
+                //tabset.changeLineColor("black");
+                tabset.setFont(24, "", 1, "black");
+
+                //tabset.setText("oYoSoftware");
+                tabset.setAutoText("Alpha");
+                //tabset.setAutoText("Numeric", 10, 0, 100);
+                //tabset.resetTabSettings();
+
+                var tabs = $(".oyotab").length;
+                for (var i = 0; i < tabs; i++) {
+                    var page = tabset.getPage(i);
+
+                    if (i === 0) {
+                        var table = document.createElement("table");
+                        $(page).append(table);
+                        var thead = document.createElement("thead");
+                        $(table).append(thead);
+
+                        var tr = document.createElement("tr");
+                        $(thead).append(tr);
+                        var td = document.createElement("td");
+                        $(td).html("Artist");
+                        $(tr).append(td);
+                        var td = document.createElement("td");
+                        $(td).html("Country");
+                        $(tr).append(td);
+                        var td = document.createElement("td");
+                        $(td).html("Count");
+                        $(tr).append(td);
+
+                        var tbody = document.createElement("tbody");
+                        $(table).append(tbody);
+
+                        var tr = document.createElement("tr");
+                        $(tbody).append(tr);
+                        var td = document.createElement("td");
+                        $(tr).append(td);
+                        var a = document.createElement("a");
+                        $(a).attr("href", "#");
+                        $(a).html("Adrian Borland");
+                        $(td).append(a);
+                        var td = document.createElement("td");
+                        $(td).html("United Kingdom");
+                        $(tr).append(td);
+                        var td = document.createElement("td");
+                        $(td).css("text-align", "right");
+                        $(td).html("9");
+                        $(tr).append(td);
+
+                        var tr = document.createElement("tr");
+                        $(tbody).append(tr);
+                        var td = document.createElement("td");
+                        $(tr).append(td);
+                        var a = document.createElement("a");
+                        $(a).attr("href", "#");
+                        $(a).html("Afro Celt Sound System");
+                        $(td).append(a);
+                        var td = document.createElement("td");
+                        $(td).html("Ireland");
+                        $(tr).append(td);
+                        var td = document.createElement("td");
+                        $(td).css("text-align", "right");
+                        $(td).html("8");
+                        $(tr).append(td);
+
+                        var tr = document.createElement("tr");
+                        $(tbody).append(tr);
+                        var td = document.createElement("td");
+                        $(tr).append(td);
+                        var a = document.createElement("a");
+                        $(a).attr("href", "#");
+                        $(a).html("Alan Parsons Project");
+                        $(td).append(a);
+                        var td = document.createElement("td");
+                        $(td).html("United Kingom");
+                        $(tr).append(td);
+                        var td = document.createElement("td");
+                        $(td).css("text-align", "right");
+                        $(td).html("11");
+                        $(tr).append(td);
+
+                        var tr = document.createElement("tr");
+                        $(tbody).append(tr);
+                        var td = document.createElement("td");
+                        $(tr).append(td);
+                        var a = document.createElement("a");
+                        $(a).attr("href", "#");
+                        $(a).html("Alquin");
+                        $(td).append(a);
+                        var td = document.createElement("td");
+                        $(td).html("Netherlands");
+                        $(tr).append(td);
+                        var td = document.createElement("td");
+                        $(td).css("text-align", "right");
+                        $(td).html("6");
+                        $(tr).append(td);
+
+                        var tr = document.createElement("tr");
+                        $(tbody).append(tr);
+                        var td = document.createElement("td");
+                        $(tr).append(td);
+                        var a = document.createElement("a");
+                        $(a).attr("href", "#");
+                        $(a).html("Arcade Fire");
+                        $(td).append(a);
+                        var td = document.createElement("td");
+                        $(td).html("Canada");
+                        $(tr).append(td);
+                        var td = document.createElement("td");
+                        $(td).css("text-align", "right");
+                        $(td).html("7");
+                        $(tr).append(td);
+
+                        var tr = document.createElement("tr");
+                        $(tbody).append(tr);
+                        var td = document.createElement("td");
+                        $(tr).append(td);
+                        var a = document.createElement("a");
+                        $(a).attr("href", "#");
+                        $(a).html("Average White Band");
+                        $(td).append(a);
+                        var td = document.createElement("td");
+                        $(td).html("United Kingdom");
+                        $(tr).append(td);
+                        var td = document.createElement("td");
+                        $(td).css("text-align", "right");
+                        $(td).html("15");
+                        $(tr).append(td);
+
+                        var tr = document.createElement("tr");
+                        $(tbody).append(tr);
+                        var td = document.createElement("td");
+                        $(tr).append(td);
+                        var a = document.createElement("a");
+                        $(a).attr("href", "#");
+                        $(a).html("Band Of Horses");
+                        $(td).append(a);
+                        var td = document.createElement("td");
+                        $(td).html("U.S.A.");
+                        $(tr).append(td);
+                        var td = document.createElement("td");
+                        $(td).css("text-align", "right");
+                        $(td).html("6");
+                        $(tr).append(td);
+
+                        var tr = document.createElement("tr");
+                        $(tbody).append(tr);
+                        var td = document.createElement("td");
+                        $(tr).append(td);
+                        var a = document.createElement("a");
+                        $(a).attr("href", "#");
+                        $(a).html("Barclay James Harvest");
+                        $(td).append(a);
+                        var td = document.createElement("td");
+                        $(td).html("United Kingom");
+                        $(tr).append(td);
+                        var td = document.createElement("td");
+                        $(td).css("text-align", "right");
+                        $(td).html("20");
+                        $(tr).append(td);
+
+                        var tr = document.createElement("tr");
+                        $(tbody).append(tr);
+                        var td = document.createElement("td");
+                        $(tr).append(td);
+                        var a = document.createElement("a");
+                        $(a).attr("href", "#");
+                        $(a).html("Beck");
+                        $(td).append(a);
+                        var td = document.createElement("td");
+                        $(td).html("U.S.A.");
+                        $(tr).append(td);
+                        var td = document.createElement("td");
+                        $(td).css("text-align", "right");
+                        $(td).html("15");
+                        $(tr).append(td);
+
+                        var tr = document.createElement("tr");
+                        $(tbody).append(tr);
+                        var td = document.createElement("td");
+                        $(tr).append(td);
+                        var a = document.createElement("a");
+                        $(a).attr("href", "#");
+                        $(a).html("Camel");
+                        $(td).append(a);
+                        var td = document.createElement("td");
+                        $(td).html("United Kingdom");
+                        $(tr).append(td);
+                        var td = document.createElement("td");
+                        $(td).css("text-align", "right");
+                        $(td).html("15");
+                        $(tr).append(td);
+
+                        var tr = document.createElement("tr");
+                        $(tbody).append(tr);
+                        var td = document.createElement("td");
+                        $(tr).append(td);
+                        var a = document.createElement("a");
+                        $(a).attr("href", "#");
+                        $(a).html("Chameleons");
+                        $(td).append(a);
+                        var td = document.createElement("td");
+                        $(td).html("United Kingdom");
+                        $(tr).append(td);
+                        var td = document.createElement("td");
+                        $(td).css("text-align", "right");
+                        $(td).html("6");
+                        $(tr).append(td);
+                    }
+
+                }
+
+            });
+        </script>
+    </body>
+</html>
