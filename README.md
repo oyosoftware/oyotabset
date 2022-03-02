@@ -22,7 +22,7 @@
 <p>jQuery component for a tabset.</p>
 <h3>Features</h3>
 <ul>
-  <li>A tool to define a tabset element which is browser independant.</li>
+  <li>A tool to define a tabset element which is browser independent.</li>
   <li>Variable number of tabs.</li>
   <li>Width and height of tabs are adjustable.</li>
   <li>Indents and overlaps of the tabs are also adjustable.</li>
@@ -30,7 +30,9 @@
   <li>Line widths and colors of the  tabs and pages can be changed </li>
   <li>Different hover modes: line, fill or mixed.</li>
   <li>Fonts are based on SVG graphics, so also can have outlines.</li>
-  
+  <li>Text on the tabs can be auto filled for Alphabet and Numeric ranges.</li>
+  <li>Font settings can be changed.</li>
+  <li>Pages can be accessed by text name.</li>
 </ul>
 <h2>Contact</h2>
 <ul>
