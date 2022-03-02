@@ -32,7 +32,7 @@
   <li>Fonts are based on SVG graphics, so also can have outlines.</li>
   <li>Text on the tabs can be auto filled for Alphabet and Numeric ranges.</li>
   <li>Font settings can be changed.</li>
-  <li>Pages can be accessed by text name.</li>
+  <li>Pages can be accessed by tab name.</li>
 </ul>
 <h2>Contact</h2>
 <ul>
