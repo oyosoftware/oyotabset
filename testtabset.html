@@ -6,7 +6,7 @@
         <script src="oyotabset.js"></script>
         <style>
             * {
-                box-sizing: border-box;
+                box-sizing          : border-box;
             }
             ::-webkit-scrollbar {
                 height              : 10px;
@@ -20,23 +20,35 @@
                 border-radius       : 54px;
             }
             .oyotab {
-                font-family: Fantasy;
+                font-family         : Fantasy;
             }
             .oyotabpage {
-                padding: 8px;
+                padding             : 8px;
             }
             table {
-                width: 100%;
-                border-collapse: collapse;
+                width               : 100%;
+                border-collapse     : collapse;
             }
             thead {
-                background: #527FC3;
-                color: white;
+                background          : #527FC3;
+                color               : white;
             }
-            td {
-                border: 1px solid black;
-                padding: 3px 5px;
-                white-space: nowrap;
+            th {
+                text-align          : left;
+            }
+            th:last-child {
+                text-align          : right;
+            }
+            th, td {
+                border              : 1px solid black;
+                padding             : 3px 5px;
+                white-space         : nowrap;
+            }
+            .image {
+                display             : block;
+                margin              : auto;
+                margin-top          : 141px;
+                transform           : translateY(-50%);
             }
         </style>
     </head>
@@ -52,7 +64,7 @@
                 //tabset.changeBackgroundColor("pink");
                 //tabset.changeLineColor("black");
                 tabset.setFont(24, "", 1, "black");
-                //tabset.setText("oYoSoftware");
+                //tabset.setText("0-9");
                 tabset.setAutoText("Alphabet");
                 //tabset.setAutoText("Numeric", 10, 0, 100);
                 //tabset.resetTabSettings();
@@ -61,7 +73,7 @@
                 for (var i = 0; i < tabs; i++) {
                     var page = tabset.getPage(i);
 
-                    if (i === 0) {
+                    if ($(page).attr("name") === "ABC") {
                         var table = document.createElement("table");
                         $(page).append(table);
                         var thead = document.createElement("thead");
@@ -69,15 +81,16 @@
 
                         var tr = document.createElement("tr");
                         $(thead).append(tr);
-                        var td = document.createElement("td");
-                        $(td).html("Artist");
-                        $(tr).append(td);
-                        var td = document.createElement("td");
-                        $(td).html("Country");
-                        $(tr).append(td);
-                        var td = document.createElement("td");
-                        $(td).html("Count");
-                        $(tr).append(td);
+                        var th = document.createElement("th");
+                        $(th).html("Artist");
+                        $(tr).append(th);
+                        var th = document.createElement("th");
+                        $(th).html("Country");
+                        $(tr).append(th);
+                        var th = document.createElement("th");
+                        //$(td)
+                        $(th).html("Count");
+                        $(tr).append(th);
 
                         var tbody = document.createElement("tbody");
                         $(table).append(tbody);
@@ -259,8 +272,13 @@
                         $(tr).append(td);
                     }
 
+                    if ($(page).attr("name") !== "ABC") {
+                        var img = document.createElement("img");
+                        $(img).attr("class", "image");
+                        $(img).attr("src", "oyosoftware.png");
+                        $(page).append(img);
+                    }
                 }
-
             });
         </script>
     </body>
